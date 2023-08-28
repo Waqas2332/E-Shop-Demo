@@ -13,7 +13,7 @@ function Home() {
   );
   console.log(featuredProducts);
   return (
-    <section className="text-gray-600 bg-gray-400 body-font">
+    <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
         <h2 className="text-center text-black text-3xl font-semibold my-4">
           Featured Products
