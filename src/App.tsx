@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import { Routes, Route } from "react-router-dom";
 import AllProducts from "./pages/AllProducts";
 import Home from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-products" element={<AllProducts />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </>
   );

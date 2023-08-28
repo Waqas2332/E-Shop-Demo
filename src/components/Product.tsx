@@ -1,6 +1,11 @@
 import { product } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const Product: React.FC<{ product: product }> = ({ product }) => {
+  const navigate = useNavigate();
+  const handleNavigate = (id: number) => {
+    navigate(`/product/${id}`);
+  };
   return (
     <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
       <div className="bg-white rounded-lg overflow-hidden shadow-lg">
@@ -19,7 +24,12 @@ const Product: React.FC<{ product: product }> = ({ product }) => {
             Ratings: {product.rating.rate}
           </h2>
           <p className="mt-1 text-gray-800 font-semibold">$ {product.price}</p>
-          <button className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+          <button
+            onClick={() => {
+              handleNavigate(product.id);
+            }}
+            className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+          >
             Details
           </button>
         </div>
