@@ -2,6 +2,11 @@ export type productInitialState = {
   products: product[];
   isLoading: boolean;
   status: string;
+  filters: {
+    category: string;
+    price: string;
+    rate: number | null;
+  };
 };
 
 export type product = {

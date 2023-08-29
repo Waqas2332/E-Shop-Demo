@@ -6,12 +6,25 @@ const initialState: productInitialState = {
   products: [],
   isLoading: false,
   status: "idle",
+  filters: {
+    category: "",
+    price: "",
+    rate: null,
+  },
 };
 
 const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    updateFilter: (state, action) => {
+      console.log(action.payload);
+      const { category, price, rate } = action.payload;
+      state.filters.category = category;
+      state.filters.price = price;
+      state.filters.rate = rate;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.pending, (state) => {
@@ -27,3 +40,4 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
+export const { updateFilter } = productSlice.actions;
