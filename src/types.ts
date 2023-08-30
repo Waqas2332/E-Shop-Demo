@@ -21,3 +21,15 @@ export type product = {
     rate: number;
   };
 };
+
+export type cartInitialState = {
+  products: cartProduct[];
+  totalAmount: number;
+};
+
+export type cartProduct = {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+};

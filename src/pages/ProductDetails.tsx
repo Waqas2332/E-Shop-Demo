@@ -1,11 +1,16 @@
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import Spinner from "../components/Spinner";
 import Layout from "../components/Layout";
+import { product } from "../types";
+import { addToCart } from "../redux/slices/cart-slice";
 function ProductDetails() {
+  const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
   const isLoading = useAppSelector((state) => state.products.isLoading);
   const params = useParams();
+  const cartProducts = useAppSelector((state) => state.cart.products);
+
   const product = products.find((product) => product.id === Number(params.id));
 
   if (isLoading) {
@@ -14,6 +19,16 @@ function ProductDetails() {
         <Spinner />
       </Layout>
     );
+  }
+
+  function handleClick(product: product) {
+    const newProduct = {
+      id: product.id,
+      price: product.price,
+      title: product.title,
+    };
+    dispatch(addToCart(newProduct));
+    console.log(cartProducts);
   }
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -38,7 +53,10 @@ function ProductDetails() {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product?.price}
               </span>
-              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+              <button
+                onClick={() => handleClick(product!)}
+                className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+              >
                 Add To Cart
               </button>
             </div>
