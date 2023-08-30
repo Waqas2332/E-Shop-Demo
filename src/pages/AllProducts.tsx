@@ -38,7 +38,7 @@ function AllProducts() {
   } else if (price == "101-200") {
     upperFilteredPrice = 200;
     lowerFilteredPrice = 101;
-  } else if (price === "> 200") {
+  } else if (price === " > 200") {
     lowerFilteredPrice = 201;
     upperFilteredPrice = Number.MAX_SAFE_INTEGER;
   }
