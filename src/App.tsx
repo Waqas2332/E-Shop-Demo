@@ -18,12 +18,14 @@ export default function App() {
   return (
     <>
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <main className="bg-gray-100">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/all-products" element={<AllProducts />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </main>
     </>
   );
 }

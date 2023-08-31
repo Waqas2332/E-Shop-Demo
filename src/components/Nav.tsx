@@ -9,7 +9,7 @@ function Nav() {
     navigate("/cart");
   }
   return (
-    <header className="text-gray-600 bg-gray-200 body-font ">
+    <header className="text-gray-600 sticky top-0 z-50 bg-white body-font ">
       <div className="container mx-auto flex items-center  flex-wrap p-5  justify-between">
         <Link
           to="/"
