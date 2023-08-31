@@ -1,3 +1,4 @@
+import Layout from "../components/Layout";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addItem, removeItem } from "../redux/slices/cart-slice";
 
@@ -5,6 +6,16 @@ function Cart() {
   const totalAmount = useAppSelector((state) => state.cart.totalAmount);
   const cartProducts = useAppSelector((state) => state.cart.products);
   const dispatch = useAppDispatch();
+
+  if (cartProducts.length === 0) {
+    return (
+      <div className="bg-white">
+        <Layout>
+          <p className="text-2xl font-bold">Cart Is Empty ...</p>
+        </Layout>
+      </div>
+    );
+  }
   return (
     <div className="max-w-screen-md mx-auto p-4">
       {cartProducts.map((item) => (
