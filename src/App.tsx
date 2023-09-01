@@ -7,6 +7,7 @@ import AllProducts from "./pages/AllProducts";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/all-products" element={<AllProducts />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Orders />} />
         </Routes>
       </main>
     </>

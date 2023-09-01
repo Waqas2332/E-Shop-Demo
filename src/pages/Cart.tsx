@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { addItem, removeItem } from "../redux/slices/cart-slice";
+import { addItem, emptyCart, removeItem } from "../redux/slices/cart-slice";
+import { dispatchOrder } from "../redux/slices/order-slice";
+import { cartProduct } from "../types";
 
 function Cart() {
   const totalAmount = useAppSelector((state) => state.cart.totalAmount);
   const cartProducts = useAppSelector((state) => state.cart.products);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   if (cartProducts.length === 0) {
     return (
@@ -15,6 +19,12 @@ function Cart() {
         </Layout>
       </div>
     );
+  }
+
+  function handleClick(cartProducts: cartProduct[], totalAmount: number) {
+    dispatch(dispatchOrder({ cartProducts, totalAmount }));
+    dispatch(emptyCart());
+    navigate("/order");
   }
   return (
     <div className="max-w-screen-md mx-auto p-4">
@@ -51,10 +61,16 @@ function Cart() {
           <span>${Math.round(item.price * item.quantity)}</span>
         </div>
       ))}
-      <div className="flex justify-end mt-4">
+      <div className="flex flex-col items-end mt-4">
         <span className="font-bold">
           Total Amount: ${Math.round(totalAmount)}
         </span>
+        <button
+          onClick={() => handleClick(cartProducts, totalAmount)}
+          className="w-32 flex justify-center items-center mt-4 h-10 text-white rounded-md bg-indigo-600"
+        >
+          Order Now
+        </button>
       </div>
     </div>
   );

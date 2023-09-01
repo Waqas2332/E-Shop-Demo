@@ -33,3 +33,10 @@ export type cartProduct = {
   price: number;
   quantity: number;
 };
+
+export type orderInitialState = {
+  order: {
+    cartProducts: cartProduct[];
+    totalAmount: number;
+  };
+};
